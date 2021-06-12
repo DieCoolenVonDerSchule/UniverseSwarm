@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - sizex
+  - sizey
+  - scalex
+  - shiftx
+  - shifty
+  - scalexslider
+  - shiftxslider
+  - shiftyslider
+  - debugtoggle
+  - MeshGenerator
+  - spreadxslider
+  - spreadyslider
+  - spreadx
+  - spready
+  - outputslider
+  - output
+  - maps
+  - menu
+  - movetoggle
+  - canvas
+  - speed
+  - shadertoggle
+  - threadingtoggle
+  - coarse
+  - contrib
+  - coarseslider
+  - contribslider
+  - scaleslider
+  - scale
+  - plantstoggle
+  - heightmapbutton
+  - plantscale
+  - plantscaleslider
+  - presets
+  - seedradius
+  - seedradiusslider
+  - presetname
+  - occurance
+  - occuranceslider
+  - filename
+  - moveupbutton
+  - movedownbutton
+  - moveleftbutton
+  - moverightbutton
+  - clearplants
+  - water
+  - watertoggle
+  - water2
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
