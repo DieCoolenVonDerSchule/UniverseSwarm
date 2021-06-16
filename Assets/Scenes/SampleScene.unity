@@ -1778,6 +1778,7 @@ MonoBehaviour:
   meshgen: {fileID: 0}
   wasser: {fileID: 0}
   wasserspiegel: 0
+  radius: 0
 --- !u!1 &241156557
 GameObject:
   m_ObjectHideFlags: 0
@@ -3266,6 +3267,7 @@ MonoBehaviour:
   meshgen: {fileID: 1628679738}
   wasser: {fileID: 895652651}
   wasserspiegel: 30
+  radius: 500
 --- !u!114 &358499340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6712,6 +6714,7 @@ MonoBehaviour:
   meshgen: {fileID: 0}
   wasser: {fileID: 0}
   wasserspiegel: 0
+  radius: 0
 --- !u!1 &967821139
 GameObject:
   m_ObjectHideFlags: 0
@@ -8937,6 +8940,7 @@ MonoBehaviour:
   meshgen: {fileID: 0}
   wasser: {fileID: 0}
   wasserspiegel: 0
+  radius: 0
 --- !u!114 &1587907666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9421,8 +9425,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   shader: {fileID: 7200000, guid: 5cfcb3e696601124a939da875d0c3370, type: 3}
   radius: 50
-  smoothx: 200
-  smoothy: 10
+  smoothx: 1
+  smoothy: 1
 --- !u!23 &1628679739
 MeshRenderer:
   m_ObjectHideFlags: 0

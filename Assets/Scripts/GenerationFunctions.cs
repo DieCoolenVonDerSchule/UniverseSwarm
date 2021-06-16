@@ -20,6 +20,7 @@ public class GenerationFunctions : MonoBehaviour
 
     public GameObject wasser;
     public float wasserspiegel;
+    public float radius;
 
 
     public struct PerlinInfo
@@ -210,10 +211,22 @@ public class GenerationFunctions : MonoBehaviour
 
 
 
-    public void createHeightMapPerlinNoiseLP()
+    public static float[,] createHeightMapPerlinNoiseLP(
+                 int x, int y, float scale, float startx, float starty, float radius)
     {
 
+        float[,] heightmap = new float[x, y];
 
+
+        for (int i = 0; i < x; i++)
+        {
+            for (int j = 0; j < y; j++)
+            {
+                heightmap[i, j] = Mathf.PerlinNoise(startx + Mathf.Sin(i * Mathf.PI*2/x) * scale * radius/y *j, starty + Mathf.Cos(i * Mathf.PI * 2 / x) * scale * radius/y * j);
+            }
+        }
+
+        return heightmap;
     }
 
 
@@ -290,7 +303,7 @@ public class GenerationFunctions : MonoBehaviour
         for (int i=0; i<mapcount; i++)
         {
             
-            if (shaderIsOn) heightmaps[i] = createHeightMapPerlinNoiseCS(x, y, scale * Mathf.Pow(i+1,coarse),startwerte[i].x, startwerte[i].y, shiftx, shifty);
+            if (shaderIsOn) heightmaps[i] = createHeightMapPerlinNoiseLP(x, y, scale * Mathf.Pow(i+1,coarse),startwerte[i].x, startwerte[i].y, radius);
             else if (threadingIsOn) heightmaps[i] = createHeightMapPerlinNoiseJobs(x, y, scale * Mathf.Pow(i + 1, coarse), startwerte[i].x, startwerte[i].y, shiftx, shifty);
             else heightmaps[i] = createHeightMapPerlinNoise(x, y, scale * Mathf.Pow(i + 1, coarse), startwerte[i].x, startwerte[i].y, shiftx, shifty);
         }

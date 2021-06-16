@@ -76,7 +76,7 @@ public class MeshGenerator : MonoBehaviour
 
        
 
-
+        /*
         float avg = 0;
 
         for (int i = 0; i < y; i++)
@@ -96,16 +96,17 @@ public class MeshGenerator : MonoBehaviour
            {
              //  heightMap[x-i, j] = Mathf.SmoothStep(heightMap[x-3, j], avg, 1f / (i+1));
              //  heightMap[x-i, j] = Mathf.Lerp(heightMap[x-smoothx, j], avg, 1f / (i+1));
-               heightMap[x-i, j] = Mathf.SmoothStep(heightMap[x-smoothx, j], avg, 1f / (i+1));
+               heightMap[x-i, j] = Mathf.Lerp(heightMap[x-smoothx, j], avg, 1f / (i+1));
 
 
            }
 
        }
-       
+       */
 
 
 
+        /*
         for (int i = 0; i < smoothy; i++)
         {
 
@@ -113,14 +114,14 @@ public class MeshGenerator : MonoBehaviour
             {
               //  heightMap[j, y-i] = Mathf.SmoothStep(heightMap[j, y-3], heightMap[j, 0], 1f / (i+1));
              //   heightMap[j, y-i] = Mathf.Lerp(heightMap[j, y-smoothy], heightMap[j, 0], 1f / (i+1));
-                heightMap[j, y-i] = Mathf.SmoothStep(heightMap[j, y-smoothy], heightMap[j, 0], 1f / (i+1));
+                heightMap[j, y-i] = Mathf.Lerp(heightMap[j, y-smoothy], heightMap[j, 0], 1f / (i+1));
 
 
 
             }
 
         }
-
+        */
         
 
 
@@ -130,9 +131,9 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int j = 0; j < x + 1; j++)
             {
-                float vecx = Mathf.Cos(Mathf.PI * 2 / x * j) * (heightMap[j, i] + radius);
-                float vecz = Mathf.Sin(Mathf.PI * 2 / x * j) * -(heightMap[j, i] + radius) * Mathf.Sin(Mathf.PI * 2 / y * i);
-                float vecy = Mathf.Sin(Mathf.PI * 2 / x * j) * (heightMap[j, i] + radius) * Mathf.Cos(Mathf.PI * 2 / y * i);
+                float vecx = Mathf.Cos(Mathf.PI  / x * j) * (heightMap[j, i]*10 + radius);
+                float vecz = Mathf.Sin(Mathf.PI  / x * j) * -(heightMap[j, i] * 10 + radius) * Mathf.Sin(Mathf.PI * 2 / y * i);
+                float vecy = Mathf.Sin(Mathf.PI / x * j) * (heightMap[j, i] * 10 + radius) * Mathf.Cos(Mathf.PI * 2/ y * i);
 
 
 
@@ -177,7 +178,6 @@ public class MeshGenerator : MonoBehaviour
 
             vert++;
         }
-
 
         ComputeBuffer buffer = new ComputeBuffer(data.Length, 8);
         buffer.SetData(data);
