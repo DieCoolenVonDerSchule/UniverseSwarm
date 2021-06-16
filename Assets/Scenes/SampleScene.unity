@@ -9421,6 +9421,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   shader: {fileID: 7200000, guid: 5cfcb3e696601124a939da875d0c3370, type: 3}
   radius: 50
+  smoothx: 200
+  smoothy: 10
 --- !u!23 &1628679739
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -15,6 +15,9 @@ public class MeshGenerator : MonoBehaviour
     public ComputeShader shader;
     public float radius;
 
+    public int smoothx;
+    public int smoothy;
+
     struct SquareInfo
     {
         int vert;
@@ -71,8 +74,57 @@ public class MeshGenerator : MonoBehaviour
         float output = float.Parse(outputInput);
 
 
+       
+
+
+        float avg = 0;
+
+        for (int i = 0; i < y; i++)
+        {
+            avg += heightMap[0, i];
+        }
+        avg /= y;
+
+
+       // avg = 10f;
 
         
+       for (int i = 0; i < smoothx; i++)
+       {
+
+           for (int j = 0; j < y; j++)
+           {
+             //  heightMap[x-i, j] = Mathf.SmoothStep(heightMap[x-3, j], avg, 1f / (i+1));
+             //  heightMap[x-i, j] = Mathf.Lerp(heightMap[x-smoothx, j], avg, 1f / (i+1));
+               heightMap[x-i, j] = Mathf.SmoothStep(heightMap[x-smoothx, j], avg, 1f / (i+1));
+
+
+           }
+
+       }
+       
+
+
+
+        for (int i = 0; i < smoothy; i++)
+        {
+
+            for (int j = 0; j < x; j++)
+            {
+              //  heightMap[j, y-i] = Mathf.SmoothStep(heightMap[j, y-3], heightMap[j, 0], 1f / (i+1));
+             //   heightMap[j, y-i] = Mathf.Lerp(heightMap[j, y-smoothy], heightMap[j, 0], 1f / (i+1));
+                heightMap[j, y-i] = Mathf.SmoothStep(heightMap[j, y-smoothy], heightMap[j, 0], 1f / (i+1));
+
+
+
+            }
+
+        }
+
+        
+
+
+
 
         for (int k = 0, i = 0; i < y + 1; i++)
         {
