@@ -210,6 +210,14 @@ public class GenerationFunctions : MonoBehaviour
 
 
 
+    public void createHeightMapPerlinNoiseLP()
+    {
+
+
+    }
+
+
+
     public void GenerateRandom()
     {
      
