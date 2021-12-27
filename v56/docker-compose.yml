@@ -1,0 +1,66 @@
+#VERSION 56
+version: "3.9"
+services:
+  haproxy:
+    image: lazyloki.ddns.net:5000/haproxyimage:Version56
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      placement:
+        constraints: [node.labels.status == leader]
+      endpoint_mode: vip
+    ports:
+      - 5550:5550
+      - 5552:5552
+
+  queen: 
+    image: lazyloki.ddns.net:5000/queenimage:Version56
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      placement:
+        constraints: [node.labels.status == leader]
+      endpoint_mode: vip
+    ports:
+      - 5050:5050
+
+  hive:
+    image: lazyloki.ddns.net:5000/hiveimage:Version56
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      placement:
+        max_replicas_per_node: 1
+        constraints: [node.labels.status != leader]
+      endpoint_mode: vip
+    depends_on:
+      - queen
+      - worker
+    volumes:
+      - vol_systems:/home/systems
+      
+  worker:
+    image: lazyloki.ddns.net:5000/workerimage:Version56
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2000M
+      mode: replicated
+      replicas: 4
+      restart_policy:
+        condition: any
+      placement:
+        constraints: [node.labels.status != leader]
+      endpoint_mode: vip
+    ports:
+      - 5052:5052
+         
+volumes:
+  vol_systems:

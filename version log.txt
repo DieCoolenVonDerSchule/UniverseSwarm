@@ -1,0 +1,240 @@
+UNIVERSE PROJECT
+
+
+v22
+- worker mit dummy densitymap
+- linux: client.py + docker-compose: queen, hive worker 
+- es wurden 2 Planeten in 2 im Volume gespeichert
+
+
+v23
+- worker mit pn densitymap
+- linux: client.py + docker-compose: queen, hive worker 
+- bis jetzt wurden 3 Planeten in 3 Systemen erstellt
+
+v24
+- linux: docker-compose: queen, hive, worker
+- windows: client.py
+- bei x,y,z (mapsize) =50 json decode error, bei 10 gehts
+- es wurden 1 Planeten in 1 im Volume gespeichert
+
+
+v25
+- unity client
+- linux docker: queen, hive, worker
+- bei x,y,z (mapsize) =50 json decode error, bei 10 gehts
+- unity client erhält statt confirmation für disconnect eine densitymap
+- es wurden 5 Planeten in 5 im Volume gespeichert
+
+
+v26
+- unity client + linux docker (queen, hive, worker)
+- speichern im volume läuft
+- bei x,y,z (mapsize) =50 json decode error, bis 18 gehts
+- unity client erhält statt confirmation für disconnect eine densitymap
+- problem wenn planet aus hive kommt
+- problem mit threads? thread wird nicht geschlossen, 4.anfrage = 4.thread
+
+v26
+- alles läuft außer der unity client
+- linux docker (queen, hive, worker) läuft mit docker-compose
+- worker erstellt densitymap 50x50x50 mit pn
+- hive speichert planeten dauerhaft im volume
+- mehrfache anforderung von client läuft
+- abfrage von existierenden planeten im hive läuft
+- unity client received die densitymap fehlerhaft/nicht vollständig
+- es wurden 40 Planeten in 40 im Volume gespeichert
+- bis jetzt wurden 49 Planeten in 49 Systemen im Volume gespeichert
+
+
+
+v27
+- Unity Client läuft
+- Densitymap wird nur korrekt aufgenommen bei receivebuffer size*16
+
+
+v28
+- Docker Einheiten Code cleanen
+- Swarm aufgesetzt
+
+
+v29
+- Swarm funktioniert
+- Registry erstellen
+- Skripte für build, push, delete
+
+
+v30
+- Registry läuft
+- unnötige imports in python-skripten entfernt
+
+
+v31
+- docker-compose funktioniert bis v27
+
+
+v32
+- socket verbindungen werden geschlossen
+- connection refused
+
+v33
+- socket verbindungen bleiben offen
+- viel umstrukturiert
+
+
+v34
+- max 1 hive per node
+
+
+v35
+- registry läuft, nodes ziehen images von der registry
+- hive replicas > 1
+
+v36
+- hardcore refactoring
+- "systems" ordner im hive (für Image) jetzt schon 2 mal auf mysteriöse weise verschwunden
+
+v37
+- unity client refactoring
+
+
+v38
+- while (connected) raus, disconnent_msg nur von client->queen
+- sockets queen->hive bleiben offen
+- hive und worker skalierbar
+- max 1 hive per node
+- test mit mehreren VMs
+- planet wird erzeugt, sporadische fehler bei mehrfacher Anfrage
+- Unterschiede ob planet erzeugt oder nur abgerufen wird?
+- sendet die queen anfrage an den richtigen hive? (lowestCapacity/ am wenigsten ausgelastete kapazität)
+
+ 
+v39
+- debugging und tests
+- queen erhöht die hivesize des angeforderten hives
+- parallelisierte berechnung der map in verschiedenen workern
+- densitymap (32x32x32) wird in blocks zerlegt (edgeLength, blocks)
+- koordinaten der linken oberen ecke des würfel-segments + edgeLength wird an worker geschickt
+- densitymap-segment kommt zurück zum hive
+- hive setzt segmente zusammen und schickt assembled densitymap an queen
+
+
+v40
+- "purgeimg" alias (löscht alle images außer alpine)
+- rebirth alias (rebirth.sh) führt killstack,killall,killimg,killreg,buildimg,pushimg,deploystack aus
+- densitymap blockweise
+
+
+v41
+- threading
+
+
+v42
+- refactoring
+- haproxy service
+- unity clean client (läuft nicht!)
+- construct/destruct stack ohne yml-deploy
+- versuche mit overlay netz und ingress
+
+
+v43
+- stack wieder mit yml-deploy
+
+v44
+- auf basis von v41+v43
+- mit/ohne haproxy
+- ddns
+- unity client clean/dirty
+- scripts verzeichnis
+- .bash_aliases datei
+
+
+v45
+- segpipe
+- unity clean client läuft
+- verteilung nur auf 1 worker
+- vpn
+
+
+v46
+- haproxy 
+- vpn
+- ALLES LÄUFT!
+
+v47
+- Layer-7 Netz
+- install.sh / vpn.sh Skripte
+- Verzwichnis: "DOCKER UNIVERSE" -> "DOCKERUNIVERSE"
+- PROBLEM: externe worker senden nicht zurück
+- vpn tests mit linux, openvpn und wireguard
+
+
+v48
+- worker speichern adresse (gesendet vom hive) und meldet sich später zurück
+
+v49
+- v46, mit wechsel auf wireguard vpn
+- send mit sendall ersetzt
+- LÄUFT mit 2 Nodes
+- test mit mehreren nodes...
+
+
+v50
+- planeten korrigieren: blockinfo enthält seed information
+- LÄUFT PERFEKT MIT 2 LEUTEN (luca+stefan)
+- dauert lange?
+
+v51
+- test mit mehreren leuten
+- worker: mehrere verbindungen (vielleicht ohne pfropfen-vm?)
+- time.sleep in send einbauen
+
+v52
+- kopie von v50
+- ha-proxy raus/rein
+- buffer selber regeln
+- neue übertragungsdmethode
+
+
+v53
+- kopie von 50
+- wieder mit alter übertragung
+- funktioniert perfekt mit spezieller VM
+- Leader-Node stellt keine Worker mehr
+
+
+v54
+- Timestamps/Messungen einbauen
+- compute shader fertig stellen
+- Shape(x,y,z) dyniamisch statt shape(128,128,128)
+- Testreihen 1 - 13 müssen wiederholt werden
+
+
+v55
+- neue library für worker: snoise
+
+
+v56
+- final version
+
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+  
+
+
+
+
+
+
+
